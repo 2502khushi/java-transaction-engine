@@ -1,5 +1,7 @@
 package com.javaEng.javaEng.model;
 
-public class TransactionType {
-    
+public enum TransactionType {
+    DEPOSIT,
+    WITHDRAWAL,
+    TRANSFER
 }
