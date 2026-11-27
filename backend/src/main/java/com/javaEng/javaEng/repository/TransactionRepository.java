@@ -5,6 +5,7 @@ import com.javaEng.javaEng.model.Transaction;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Repository
@@ -53,4 +54,30 @@ public class TransactionRepository {
                 transactionId
         ).stream().findFirst();
     }
+    public int savePendingTransaction(
+        String transactionId,
+        String type,
+        BigDecimal amount,
+        Long sourceAccount,
+        Long destinationAccount) {
+
+    String sql = """
+            INSERT INTO transaction_record
+            (transaction_id, type, amount, status, source_account, destination_account)
+            VALUES (?, ?, ?, 'PENDING', ?, ?)
+            """;
+
+    return jdbcTemplate.update(sql, transactionId, type, amount,
+            sourceAccount, destinationAccount);
+        }
+        public int updateTransactionStatus(String transactionId, String status) {
+
+        String sql = """
+                UPDATE transaction_record
+                SET status = ?, completed_at = CURRENT_TIMESTAMP
+                WHERE transaction_id = ?
+                """;
+
+        return jdbcTemplate.update(sql, status, transactionId);
+        }
 }
