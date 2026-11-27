@@ -11,12 +11,10 @@ import com.javaEng.javaEng.repository.FailedTransactionRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.javaEng.javaEng.repository.CustomerRepository;
-import com.javaEng.javaEng.model.Customer;
-import com.javaEng.javaEng.model.Transaction;
+
 import com.javaEng.javaEng.repository.TransactionRepository;
 import com.javaEng.javaEng.repository.AuditRepository;
-import com.javaEng.javaEng.repository.FailedTransactionRepository;
+
 
 @RestController
 public class TestController {
